@@ -21,6 +21,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@RequestMapping(value="logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";
+	}
+	
 	//Login Page 出力
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String login() {
