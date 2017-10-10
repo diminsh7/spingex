@@ -15,6 +15,10 @@
 			WHERE member_no = #{memberNo}
 	</select>
 	
+	<select id="selectAllMember" resultMap="resultMember">
+		SELECT member_no, member_id, member_name FROM member 
+	</select>
+	
 	<insert id="insertMember" parameterType="blog.synths.web.service.Member">
 		INSERT INTO member (member_id, member_pw, member_name) VALUES (#{memberId}, #{memberPw}, #{memberName})
 	</insert>

@@ -1,5 +1,7 @@
 package blog.synths.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +41,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/memberList")
-	public String memberList() {
+	public String memberList(Model model) {
 		System.out.println("[MemberController.java / memberList Method]");
+		List<Member> mlist = memberDao.selectAllMember();
+		model.addAttribute("mlist", mlist);
 		return "memberList";
 	}
 }
