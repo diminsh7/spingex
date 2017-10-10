@@ -2,6 +2,8 @@ package blog.synths.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,36 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("/getMember") //'getMember'だと呼び出すと
+	//Login Page 出力
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	
+	//Login 処理
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public String login(Member member, HttpSession session) { //parameterでHttpSessionを貰う
+		Member loginMember = memberDao.loginMember(member);
+		if(loginMember == null) {
+			return "redirect:/login";
+		} else {
+			//sessionにLogin情報を入れる。
+			session.setAttribute("loginMember", loginMember);
+			return "redirect:/loginOnly";
+		}
+	}
+	
+	//会員専用ページ
+	@RequestMapping(value="loginOnly")
+	public String loginOnly(HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/login";
+		}
+		return "loginOnly";
+	}
+	
+	@RequestMapping("/getMember")
+	//'getMember'だと呼び出すと
 	public String getMember(Model model) {
 		Member member = memberDao.selectByNo(1);
 		model.addAttribute("member", member);
@@ -47,4 +78,5 @@ public class MemberController {
 		model.addAttribute("mlist", mlist);
 		return "memberList";
 	}
+	
 }

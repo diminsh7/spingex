@@ -14,6 +14,10 @@ public class MemberDao {
 	@Autowired //'='の代わり
 	SqlSessionTemplate sqlSession;
 	
+	public Member loginMember(Member member) {
+		return sqlSession.selectOne(NS + "loginMember", member);
+	}
+	
 	public Member selectByNo(int memberNo) {
 		return sqlSession.selectOne(NS + "selectByNo", memberNo);
 	}
