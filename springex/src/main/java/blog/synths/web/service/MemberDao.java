@@ -6,9 +6,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MemberDao {
+	
+	private final String NS = "blog.synths.web.service.MemberMapper.";
+	
 	@Autowired //'='の代わり
 	SqlSessionTemplate sqlSession;
 	public Member selectByNo(int memberNo) {
-		return sqlSession.selectOne("blog.synths.web.service.MemberMapper.selectByNo", memberNo);
+		return sqlSession.selectOne(NS + "selectByNo", memberNo);
+	}
+	public int insertMember(Member member) {
+		return sqlSession.insert(NS + "insertMember", member);
 	}
 }

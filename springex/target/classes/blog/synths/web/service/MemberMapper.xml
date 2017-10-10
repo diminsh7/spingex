@@ -14,4 +14,8 @@
 		SELECT member_no, member_id, member_pw, member_name FROM member 
 			WHERE member_no = #{memberNo}
 	</select>
+	
+	<insert id="insertMember" parameterType="blog.synths.web.service.Member">
+		INSERT INTO member (member_id, member_pw, member_name) VALUES (#{memberId}, #{memberPw}, #{memberName})
+	</insert>
 </mapper>
