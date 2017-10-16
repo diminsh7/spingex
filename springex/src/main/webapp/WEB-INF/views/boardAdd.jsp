@@ -67,7 +67,7 @@
         <div>
             <input class="btn btn-default" id="addButton" type="button" value="登録"/>
             <input class="btn btn-default" type="reset" value="初期化"/>
-            <a class="btn btn-default" href="${pageContext.request.contextPath}/boardList">リスト</a>
+            <a class="btn btn-default" href="${pageContext.request.contextPath}/boardList">List</a>
         </div>
     </form>
 </div>
