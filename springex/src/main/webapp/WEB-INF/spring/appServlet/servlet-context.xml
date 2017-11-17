@@ -38,6 +38,7 @@
             <list>
                 <value>classpath:blog/synths/web/service/MemberMapper.xml</value>
                 <value>classpath:blog/synths/web/service/BoardMapper.xml</value>
+                <value>classpath:blog/synths/web/service/PizzaMapper.xml</value>
             </list>
         </property>
     </bean>
